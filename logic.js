@@ -56,29 +56,51 @@
 //   }
 // });
 
-
+  // let queryKey = trueData[regionNameVar, countyNameVar];
 d3.json("./data/trueData.json").then(function (data) {
   let regionNameVar = data.RegionName;
-  let countyNameVar = data.CountyName;
   let regionLatVar = data.RegionLat;
   let regionLngVar = data.RegionLng;
-  // let queryKey = trueData[regionNameVar, countyNameVar];
+
+  // outputs both region latitude and region longitude to make region cordinates
   let regionCord = data[regionLatVar, regionLngVar];
 
 
     for (let x in data) {
-  
+
+
+      // attempt to grab the values using square bracket notation
+      let regionNameVar2 = data[x]["RegionName"];
+      let regionLatVar2 = data[x]["RegionLat"];
+      let regionLngVar2 = data[x]["RegionLng"];
+
+       // outputs both region latitude and region longitude to make region cordinates
+      let regionCordinates2 = [];
+      regionCordinates2 = [regionLatVar2, regionLngVar2];
+
       for (let y in data[x]) {
       console.log(y)
 
     }
 
-    //console.log(`x is ${x}`);
-    console.log(`++++++++`)
-    console.log(`x is ${x}`)
-    console.log(`${x}'s cordinaties are ${regionCord}`)
+ 
+
+  // tests variable output
+     console.log(`++++++++`);
+     console.log(`${x}'s cordinaties are ${regionCord}`);
+     console.log(`${x}'s region name is ${regionNameVar}`);
+     console.log(`${x}'s second region name is ` + regionNameVar2);
+     console.log(`${x}'s second cordnaties are ` + regionCordinates2);
+  //   console.log(`x is ${x}`);
+
   }
-  });
+  },
+
+
+);
+
+
+
 
 
 // //gets region name and countyname from json and stores them into variables
@@ -90,7 +112,7 @@ d3.json("./data/trueData.json").then(function (data) {
 
 
 
-console.log(`test of queryKey: + ${queryKey}`);
+//console.log(`test of queryKey: + ${queryKey}`);
 //   metroArray = []
 
 //   //activates test call function
