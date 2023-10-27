@@ -80,313 +80,49 @@ d3.json("./data/trueData.json").then(function (data) {
      countyLngVar2 = data[x]["CountyLng"];
      countyNameVar = data[x]["CountyName"]
 
-     for(var key in json.jsonData) {
-      for (var key1 in json.jsonData[key]) {
-          console.log(json.jsonData[key][key1])
-      }
-   }
+
+     //should grab the keys and the values from the truedataJSON
+  //    for(var key in trueData.jsonData) {
+  //     for (var key1 in trueData.jsonData[key]) {
+  //         console.log(trueData.jsonData[key][key1])
+
+  //         if (data[x][y] == "2022")
+  //         console.log (`${x} + ":" + ${y}`)
+  //     }
+  //  }
   }
 
-    //  Jan2013 = data[x]["2013-01-31"]
-    //  Feb2013 = data[x]["2013-02-28"]
-    //  Mar2013 = data[x]["2013-03-31"]
-    //  Apr2013 = data[x]["2013-04-30"]
-    //  May2013 = data[x]["2013-05-31"]
-    //  June2013 = data[x]["2013-06-30"]
-    //  July2013 = data[x]["2013-07-31"]
-    //  Aug2013 = data[x]["2013-08-31"]
-    //  Sep2013 = data[x][]
-    //  Oct2013 = data[x]
-    //  Nov2013 = data[x]
-    //  Dec2013 = data[x]
-    //  Jan2014 = data[x]
-    //  Feb2014 = data[x]
-    //  Mar2014 = data[x]
-    //  Apr2014 = data[x]
-    //  May2014 = data[x]
-    //  June2014 = data[x]
-    //  July2014 = data[x]
-    //  Aug2014 = data[x]
-    //  Sep2014 = data[x]
-    //  Oct2014 = data[x]
-    //  Nov2014 = data[x]
-    //  Dec2014 = data[x]
-    //  Jan2015 = data[x]
-    //  Feb2015 = data[x]
-    //  Mar2015 = data[x]
-    //  Apr2015 = data[x]
-    //  May2015 = data[x]
-    //  June2015 = data[x]
-    //  July2015 = data[x]
-    //  Aug2015 = data[x]
-    //  Sep2015 = data[x]
-    //  Oct2015 = data[x]
-    //  Nov2015 = data[x]
-    //  Dec2015 = data[x]
-    //  Jan2016 = data[x]
-    //  Feb2016 = data[x]
-    //  Mar2016 = data[x]
-    //  Apr2016 = data[x]
-    //  May2016 = data[x]
-    //  June2016 = data[x]
-    //  July2016 = data[x]
-    //  Aug2016 = data[x]
-    //  Sep2016 = data[x]
-    //  Oct2016 = data[x]
-    //  Nov2016 = data[x]
-    //  Dec2016 = data[x]
-    //  Jan2017 = data[x]
-    //  Feb2017 = data[x]
-    //  Mar2017 = data[x]
-    //  Apr2017 = data[x]
-    //  May2017 = data[x]
-    //  June2017 = data[x]
-    //  July2017 = data[x]
-    //  Aug2017 = data[x]
-    //  Sep2017 = data[x]
-    //  Oct2017 = data[x]
-    //  Nov2017 = data[x]
-    //  Dec2017 = data[x]
-    //  Jan2018 = data[x]
-    //  Feb2018 = data[x]
-    //  Mar2018 = data[x]
-    //  Apr2018 = data[x]
-    //  May2018 = data[x]
-    //  June2018 = data[x]
-    //  July2018 = data[x]
-    //  Aug2018 = data[x]
-    //  Sep2018 = data[x]
-    //  Oct2018 = data[x]
-    //  Nov2018 = data[x]
-    //  Dec2018 = data[x]
-    //  Jan2019 = data[x]
-    //  Feb2019 = data[x]
-    //  Mar2019 = data[x]
-    //  Apr2019 = data[x]
-    //  May2019 = data[x]
-    //  June2019 = data[x]
-    //  July2019 = data[x]
-    //  Aug2019 = data[x]
-    //  Sep2019 = data[x]
-    //  Oct2019 = data[x]
-    //  Nov2019 = data[x]
-    //  Dec2019 = data[x]
-    //  Jan2020 = data[x]
-    //  Feb2020 = data[x]
-    //  Mar2020 = data[x]
-    //  Apr2020 = data[x]
-    //  May2020 = data[x]
-    //  June2020 = data[x]
-    //  July2020 = data[x]
-    //  Aug2020 = data[x]
-    //  Sep2020 = data[x]
-    //  Oct2020 = data[x]
-    //  Nov2020 = data[x]
-    //  Dec2020 = data[x]
-    //  Jan2021 = data[x]
-    //  Feb2021 = data[x]
-    //  Mar2021 = data[x]
-    //  Apr2021 = data[x]
-    //  May2021 = data[x]
-    //  June2021 = data[x]
-    //  July2021 = data[x]
-    //  Aug2021 = data[x]
-    //  Sep2021 = data[x]
-    //  Oct2021 = data[x]
-    //  Nov2021 = data[x]
-    //  Dec2021 = data[x]
-    //  Jan2021 = data[x]
-    //  Feb2021 = data[x]
-    //  Mar2021 = data[x]
-    //  Apr2021 = data[x]
-    //  May2021 = data[x]
-    //  June2021 = data[x]
-    //  July2021 = data[x]
-    //  Aug2021 = data[x]
-    //  Sep2021 = data[x]
-    //  Oct2021 = data[x]
-    //  Nov2021 = data[x]
-    //  Dec2021 = data[x]
-    //  Jan2022 = data[x]
-    //  Feb2022 = data[x]
-    //  Mar2022 = data[x]
-    //  Apr2022 = data[x]
-    //  May2022 = data[x]
-    //  June2022 = data[x]
-    //  July2022 = data[x]
-    //  Aug2022 = data[x]
-    //  Sep2022 = data[x]
-    //  Oct2022 = data[x]
-    //  Nov2022 = data[x]
-    //  Dec2022 = data[x]
-    //  Jan2023 = data[x]
-    //  Feb2023 = data[x]
-    //  Mar2023 = data[x]
-    //  Apr2023 = data[x]
-    //  May2023 = data[x]
-    //  June2023 = data[x]
-    //  July2023 = data[x]
-    //  Aug2023 = data[x]
-    //  Sep2023 = data[x]
+  let variantOptions = [];
+for (let i = 1; i < 4; i++) {
+  var key = '2022' + i;
+  if (data.hasOwnProperty(key)) {
+    variantOptions.push(data[key]);
+  }
+  let variantOptions = data.options;
+}
 
 
-     
-     
-    //  "2013-09-30"
-    //  "2013-10-31"
-    //  "2013-11-30"
-    //  "2013-12-31"
-    //  "2014-01-31"
-    //  "2014-02-28"
-    //  "2014-03-31"
-    //  "2014-04-30"
-    //  "2014-05-31"
-    //  "2014-06-30"
-    //  "2014-07-31"
-    //  "2014-08-31"
-    //  "2014-09-30"
-    //  "2014-10-31"
-    //  "2014-11-30"
-    //  "2014-12-31"
-    //  "2015-01-31"
-    //  "2015-02-28"
-    //  "2015-03-31"
-    //  "2015-04-30"
-    //  "2015-05-31"
-    //  "2015-06-30"
-    //  "2015-07-31"
-    //  "2015-08-31"
-    //  "2015-09-30"
-    //  "2015-10-31"
-    //  "2015-11-30"
-    //  "2015-12-31"
-    //  "2016-01-31"
-    //  "2016-02-29"
-    //  "2016-03-31"
-    //  "2016-04-30"
-    //  "2016-05-31"
-    //  "2016-06-30"
-    //  "2016-07-31"
-    //  "2016-08-31"
-    //  "2016-09-30"
-    //  "2016-10-31"
-    //  "2016-11-30"
-    //  "2016-12-31"
-    //  "2017-01-31"
-    //  "2017-02-28"
-    //  "2017-03-31"
-    //  "2017-04-30"
-    //  "2017-05-31"
-    //  "2017-06-30"
-    //  "2017-07-31"
-    //  "2017-08-31"
-    //  "2017-09-30"
-    //  "2017-10-31"
-    //  "2017-11-30"
-    //  "2017-12-31"
-    //  "2018-01-31"
-    //  "2018-02-28"
-    //  "2018-03-31"
-    //  "2018-04-30"
-    //  "2018-05-31"
-    //  "2018-06-30"
-    //  "2018-07-31"
-    //  "2018-08-31"
-    //  "2018-09-30"
-    //  "2018-10-31"
-    //  "2018-11-30"
-    //  "2018-12-31"
-    //  "2019-01-31"
-    //  "2019-02-28"
-    //  "2019-03-31"
-    //  "2019-04-30"
-    //  "2019-05-31"
-    //  "2019-06-30"
-    //  "2019-07-31"
-    //  "2019-08-31"
-    //  "2019-09-30"
-    //  "2019-10-31"
-    //  "2019-11-30"
-    //  "2019-12-31"
-    //  "2020-01-31"
-    //  "2020-02-29"
-    //  "2020-03-31"
-    //  "2020-04-30"
-    //  "2020-05-31"
-    //  "2020-06-30"
-    //  "2020-07-31"
-    //  "2020-08-31"
-    //  "2020-09-30"
-    //  "2020-10-31"
-    //  "2020-11-30"
-    //  "2020-12-31"
-    //  "2021-01-31"
-    //  "2021-02-28"
-    //  "2021-03-31"
-    //  "2021-04-30"
-    //  "2021-05-31"
-    //  "2021-06-30"
-    //  "2021-07-31"
-    //  "2021-08-31"
-    //  "2021-09-30"
-    //  "2021-10-31"
-    //  "2021-11-30"
-    //  "2021-12-31"
-    //  "2022-01-31"
-    //  "2022-02-28"
-    //  "2022-03-31"
-    //  "2022-04-30"
-    //  "2022-05-31"
-    //  "2022-06-30"
-    //  "2022-07-31"
-    //  "2022-08-31"
-    //  "2022-09-30"
-    //  "2022-10-31"
-    //  "2022-11-30"
-    //  "2022-12-31"
-    //  "2023-01-31"
-    //  "2023-02-28"
-    //  "2023-03-31"
-    //  "2023-04-30"
-    //  "2023-05-31"
-    //  "2023-06-30"
-    //  "2023-07-31"
-    //  "2023-08-31"
-    //  "2023-09-30"
-
-    //   Jan
-    //   Feb
-    //   Mar
-    //   Apr
-    //   May 
-    //   June 
-    //   July 
-    //   Aug 
-    //   Sep 
-    //   Oct 
-    //   Nov 
-    //   Dec 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //  Jan2022 = data[x]["2022-01-31"]
+    //  Feb2022 = data[x]["2022-02-28"]
+    //  Mar2022 = data[x]["2022-03-31"]
+    //  Apr2022 = data[x]["2022-04-30"]
+    //  May2022 = data[x]["2022-05-31"]
+    //  June2022 = data[x]["2022-06-30"]
+    //  July2022 = data[x]["2022-07-31"]
+    //  Aug2022 = data[x]["2022-08-31"]
+    //  Sep2022 = data[x]["2022-09-30"]
+    //  Oct2022 = data[x]["2022-10-31"]
+    //  Nov2022 = data[x]["2022-11-30"]
+    //  Dec2022 = data[x]["2022-12-31"]
+    //  Jan2023 = data[x]["2023-01-31"]
+    //  Feb2023 = data[x]["2023-02-28"]
+    //  Mar2023 = data[x]["2023-03-31"]
+    //  Apr2023 = data[x]["2023-04-30"]
+    //  May2023 = data[x]["2023-05-31"]
+    //  June2023 = data[x]["2023-06-30"]
+    //  July2023 = data[x]["2023-07-31"]
+    //  Aug2023 = data[x]["2023-08-31"]
+    //  Sep2023 = data[x]["2023-09-30"]
 
 
       // outputs both region latitude and region longitude to make region cordinates
