@@ -51,6 +51,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   
       let features = response.data // this is holding stations array
   
+     //   console.log(features.size)
+
       for (let i=0; i < 175; i++){
           let station = features[i]// station is an object that's inside the stations array
   
