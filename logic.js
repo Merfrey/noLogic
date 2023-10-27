@@ -14,7 +14,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let link = 'https://geojson.io/#map=4.08/39.3/-97.79'
 
   // Getting our GeoJSON data
-  d3.json("./data/trueData2.json").then(function (data) {
+  d3.json("./data/trueData2.geojson").then(function (data) {
     // Creating a GeoJSON layer with the retrieved data
     L.geoJson(data, {
         style: function (feature) {
@@ -90,8 +90,9 @@ d3.json("./data/trueData.json").then(function (data) {
   //         console.log (`${x} + ":" + ${y}`)
   //     }
   //  }
-  }
+  
 
+  //IT WORKS FINALLY, DO NOT REMOVE. Will output keys and their values to the console.
   let variantOptions = [];
 for (let i = 1; i < 4; i++) {
   var key = '2022' + i;
@@ -128,20 +129,15 @@ for (let i = 1; i < 4; i++) {
       // outputs both region latitude and region longitude to make region cordinates
       regionCordinates2 = [regionLatVar2, regionLngVar2];
      
-       for (let y in data[x])
-       {
-        for(var key in json.jsonData) {
-          for (var key1 in json.jsonData[key]) {
-              console.log(json.jsonData[key][key1])
-       console.log(y)
-       }
+//       for (let y in data[x])
+ //      {
+        for(var key in data[x]) {
+   //       for (var key1 in data[x][key]) {
+              console.log(data[x][key])
+        }
+       console.log(data[x])
+  //     }
 
-//   // tests variable output
-//      console.log(`++++++++`);
-//      console.log(`${x}'s region name is ` + regionNameVar2);
-//      console.log(`${x}'s cordnaties are ` + regionCordinates2);
-//      console.log(`The county (${countyNameVar}) latitude is ${countyLatVar2}`);
-//      console.log(`The county (${countyNameVar}) longitude is ${countyLngVar2}`);
 
      for(let n in data){
       lngDifference = regionLngArray - countyAbs
@@ -172,10 +168,10 @@ for (let i = 1; i < 4; i++) {
 
 //   console.log(`The range of longitude between ${countyNameVar} and ${x} is ${lngDifference}`)
   
-  }// for (let x in data) end bracket
-
- }
-}
+ // }
+  }
+ } // for (let x in data) end bracket
+//}
 )
 
 
@@ -240,6 +236,12 @@ for (let i = 1; i < 4; i++) {
 
 
 
+//   // tests variable output
+//      console.log(`++++++++`);
+//      console.log(`${x}'s region name is ` + regionNameVar2);
+//      console.log(`${x}'s cordnaties are ` + regionCordinates2);
+//      console.log(`The county (${countyNameVar}) latitude is ${countyLatVar2}`);
+//      console.log(`The county (${countyNameVar}) longitude is ${countyLngVar2}`);
 
 
   
