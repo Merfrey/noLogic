@@ -14,7 +14,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let link = 'https://geojson.io/#map=4.08/39.3/-97.79'
 
   // Getting our GeoJSON data
-  d3.json(link).then(function (data) {
+  d3.json("./data/trueData2.json").then(function (data) {
     // Creating a GeoJSON layer with the retrieved data
     L.geoJson(data, {
         style: function (feature) {
@@ -82,10 +82,10 @@ d3.json("./data/trueData.json").then(function (data) {
       // outputs both region latitude and region longitude to make region cordinates
       regionCordinates2 = [regionLatVar2, regionLngVar2];
      
-      // for (let y in data[x])
-      // {
-      // console.log(y)
-      // }
+       for (let y in data[x])
+       {
+       console.log(y)
+       }
 
 //   // tests variable output
 //      console.log(`++++++++`);
