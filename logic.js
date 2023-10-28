@@ -1,15 +1,4 @@
 
-let myMap = L.map("map", {
-  center: [40.7, -73.95],
-  zoom: 11
-});
-
-//Adding the tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(myMap);
-
-//Layer.bindPopup.
 
 // fifteen point one city population layers use for mapping finagiling
 // let link = 'https://geojson.io/#map=4.08/39.3/-97.79'
@@ -32,7 +21,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           "Region Point": data
       }
   
-      let map = L.map("map-id", {
+      let map = L.map("map", {
           center: [40.73, -74.0059],
           zoom:12,
           layers: [streetmap, data]
@@ -56,10 +45,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     //   }
 
      // for (let i=0; i < 175; i++){
-        // for (let i=0; i < features.length; i++){
-            for (let x in features){
+       for (let x=0; x < features.length; x++){
+        //    for (let x in features){
          let station = features[x]// station is an object that's inside the stations array
   
+        //console.log(station)
+
          //   console.log(station)
 
               let bikeMarker = L.marker([station.RegionLat, station.RegionLng]).bindPopup("<h3>name: "+ station.RegionName+ "</h3><h3>CountyName" +station.CountyName+  "</h3>")
@@ -70,9 +61,13 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
           }
-       
+
+          // console.log(bikeMarkers)
+
+          console.log("hello world")
+
           createMap(L.layerGroup(bikeMarkers))
-  
+
     }
       d3.json("./data/trueData.json").then(createMarkers)
 
