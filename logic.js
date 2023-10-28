@@ -49,16 +49,26 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   
       let bikeMarkers = []
   
-      let features = response.data // this is holding stations array
-  
-     //   console.log(features.size)
+      let features = response // this is holding stations array
+  //
+    //   for (let x in features){
+    //    console.log(x)
+    //   }
 
-      for (let i=0; i < 175; i++){
-          let station = features[i]// station is an object that's inside the stations array
+     // for (let i=0; i < 175; i++){
+        // for (let i=0; i < features.length; i++){
+            for (let x in features){
+         let station = features[x]// station is an object that's inside the stations array
   
-              let bikeMarker = L.marker([Malden.RegionLat, Malden.RegionLng]).bindPopup("<h3>name: "+Malden.RegionName+ "</h3><h3>Capacity" +station.capacity+  "</h3>")
+         //   console.log(station)
+
+              let bikeMarker = L.marker([station.RegionLat, station.RegionLng]).bindPopup("<h3>name: "+ station.RegionName+ "</h3><h3>CountyName" +station.CountyName+  "</h3>")
       
+ //             console.log(bikeMarker)
+
               bikeMarkers.push(bikeMarker)
+
+
           }
        
           createMap(L.layerGroup(bikeMarkers))
