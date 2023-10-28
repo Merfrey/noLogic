@@ -11,25 +11,26 @@
       let streetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       });
+      
   
       let baseMaps = {
           "Street Map": streetmap
-      }
+      };
   
   
       let overlayMaps = {
           "Region Point": data
-      }
+      };
   
-      let map = L.map("map", {
+      var map = L.map("map", {
           center: [40.73, -74.0059],
           zoom:12,
           layers: [streetmap, data]
-      })
+      });
   
       L.control.layers(baseMaps, overlayMaps, {
           collapsed: false
-      }).addTo(map)
+      }).addTo(map);
   
   }
   
