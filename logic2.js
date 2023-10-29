@@ -1,200 +1,95 @@
 function createMap(data){
 
-    let myMap = L.map("map", {
-        center: [40.7128, -95.0059],
-        zoom: 4,
-        layers: [data]
-      });
-    
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(myMap);
-    
-      let mapStyle = {
-        color: "brown",
-        fillColor: "pink",
-        fillOpacity: 0.3,
-        weight: 1.5
-      }
+  let myMap = L.map("map", {
+      center: [40.7128, -95.0059],
+      zoom: 4,
+      layers: [data]
+    });
+  
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(myMap);
+  
+    let mapStyle = {
+      color: "brown",
+      fillColor: "pink",
+      fillOpacity: 0.3,
+      weight: 1.5
     }
-      function createMarkers(response){ // response is the url
-      
-    
+  }
+    function createMarkers(features){ // response is the url
+  
+            let bikeMarkers = []
         
-    
-    
-              let bikeMarkers = []
+              for (let x in features){
+               let station = features[x]// station is an object that's inside the stations array
+  
+                    bikeMarkers.push(createPin(station))
+                }
+  
+                createMap(L.layerGroup(bikeMarkers))
+  
+          }
+  //function will take in station, and output bike marker
+          function createPin(station){
+            Jan2022 = station["2022-01-31"]
+            Feb2022 = station["2022-02-28"]
+            Mar2022 = station["2022-03-31"]
+            Apr2022 = station["2022-04-30"]
+            May2022 = station["2022-05-31"]
+            June2022 = station["2022-06-30"]
+            July2022 = station["2022-07-31"]
+            Aug2022 = station["2022-08-31"]
+            Sep2022 = station["2022-09-30"]
+            Oct2022 = station["2022-10-31"]
+            Nov2022 = station["2022-11-30"]
+            Dec2022 = station["2022-12-31"]
+            Jan2023 = station["2023-01-31"]
+            Feb2023 = station["2023-02-28"]
+            Mar2023 = station["2023-03-31"]
+            Apr2023 = station["2023-04-30"]
+            May2023 = station["2023-05-31"]
+            June2023 = station["2023-06-30"]
+            July2023 = station["2023-07-31"]
+            Aug2023 = station["2023-08-31"]
+            Sep2023 = station["2023-09-30"]
+  
+  let latDif = Math.abs(station.CountyLat - station.RegionLat)
+  let lngDif = Math.abs(station.CountyLng - station.RegionLng)
+  
+  let totalDif = Math.sqrt((latDif * latDif) + (lngDif * lngDif))
+  
+  let pinColor 
+            if (totalDif < 0.15) pinColor = '#FFFF00'; //yellow
+            else if (totalDif < 0.25) pinColor = '#FF0000'; // red FF0000
+            else if (totalDif < 0.5) pinColor = '#FFA500'; //orange
+            else if (totalDif < 1) pinColor = '#008000'; // green #008000
+            else if (totalDif < 2) pinColor = '#800080'; // purple #800080
+            else pinColor = '#000000';
+  
+            //sets the css style for the marker/pins
+            const markerHtmlStyles = `
+            background-color: ${pinColor};
+            width: 1rem;
+            height: 1rem;
+            display: block;
+            left: -0.5rem;
+            top: -0.5rem;
+            position: relative;
+            border-radius: 3rem 3rem 0;
+            transform: rotate(45deg);
+            border: 1px solid #000000`
           
-              let features = response // this is holding stations array
-    
-        //       for (let x=0; x < features.length; x++){
-                for (let x in features){
-                 let station = features[x]// station is an object that's inside the stations array
-        
-                 Jan2022 = features[x]["2022-01-31"]
-                 //      Feb2022 = data[x]["2022-02-28"]
-                 //      Mar2022 = data[x]["2022-03-31"]
-                 //      Apr2022 = data[x]["2022-04-30"]
-                 //      May2022 = data[x]["2022-05-31"]
-                 //      June2022 = data[x]["2022-06-30"]
-                 //      July2022 = data[x]["2022-07-31"]
-                 //      Aug2022 = data[x]["2022-08-31"]
-                 //      Sep2022 = data[x]["2022-09-30"]
-                 //      Oct2022 = data[x]["2022-10-31"]
-                 //      Nov2022 = data[x]["2022-11-30"]
-                 //      Dec2022 = data[x]["2022-12-31"]
-                 //      Jan2023 = data[x]["2023-01-31"]
-                 //      Feb2023 = data[x]["2023-02-28"]
-                 //      Mar2023 = data[x]["2023-03-31"]
-                 //      Apr2023 = data[x]["2023-04-30"]
-                 //      May2023 = data[x]["2023-05-31"]
-                 //      June2023 = data[x]["2023-06-30"]
-                 //      July2023 = data[x]["2023-07-31"]
-                 //      Aug2023 = data[x]["2023-08-31"]
-                 //      Sep2023 = data[x]["2023-09-30"]
-                 
-    
-                      let bikeMarker = L.marker([station.RegionLat, station.RegionLng]).bindPopup("<h3>County: " +station.CountyName+  "</h3><h3>Region:" + station.RegionName+ "</h3><h3> House Value: 2022-01-31" +  Jan2022 +"</h3>")
-        
-                      bikeMarkers.push(bikeMarker)
-        
-                      console.log("hello world")
-      
-                  }
-    
-                  createMap(L.layerGroup(bikeMarkers))
-        
-            }
-              d3.json("data/trueData.json").then(createMarkers)
-    
-      // var layerGroup = L.layerGroup().addTo(myMap);
-      // var slider = document.getElementById("myRange");
-      // var output = document.getElementById("demo");
-      // output.innerHTML = slider.value;
-      // slider.oninput = function () {
-      //   output.innerHTML = values2[this.value];
-      //   let dat = values2[this.value];
-      //   layerGroup.clearLayers()
-        
-      //   // Getting our GeoJSON data
-      //   d3.json("data/States.json").then(function (data) {
-      //     d3.json("data/clean_state_house_pricing.json").then(function (states) {
-      //       L.geoJson(data, {
-      //         style: function (feature) {
-      //           return {
-      //             color: "black",
-      //             fillColor: chooseColor(feature.properties.NAME),
-      //             fillOpacity: 0.5,
-      //             weight: 1.5
-      //           }
-      //         },
-    
-    
-      //         onEachFeature: function (feature, layer) {
-      //           let state = feature.properties.NAME;
-      //           let money = states[state][dat]
-      //           if (money == 0){
-      //             money = "Undocumented"
-      //           }
-      //           layer.on({
-      //             mouseover: function (event) {
-      //               layer = event.target;
-      //               layer.setStyle({
-      //                 fillOpacity: 0.9
-      //               })
-      //             },
-    
-    
-      //             mouseout: function (event) {
-      //               layer = event.target;
-      //               layer.setStyle({
-      //                 fillOpacity: 0.5
-      //               })
-      //             },
-    
-    
-      //             click: function (event) {
-      //               myMap.fitBounds(event.target.getBounds());
-      //             }
-      //           });
-    
-    
-      //           layer.bindPopup(
-      //             "<h1>" + state + "</h1>" +
-      //             "<h2>The average home price is $" + money + " in " + [dat] + "</h2>"
-      //           );
-      //           //  console.log(states[state][dat]);
-      //         }
-      //       }).addTo(layerGroup);
-      //       // console.log(states);
-    
-    
-    
-      //       function chooseColor(arg) {
-      //         let prices = []
-      //         let places = ['California', 'Texas', 'Florida', 'New York', 'Pennsylvania', 'Illinois', 'Ohio',
-      //           'Georgia', 'North Carolina', 'Michigan', 'New Jersey', 'Virginia', 'Washington', 'Arizona',
-      //           'Massachusetts', 'Tennessee', 'Indiana', 'Maryland', 'Missouri', 'Wisconsin', 'Colorado',
-      //           'Minnesota', 'South Carolina', 'Alabama', 'Louisiana', 'Kentucky', 'Oregon', 'Oklahoma',
-      //           'Connecticut', 'Utah', 'Iowa', 'Nevada', 'Arkansas', 'Mississippi', 'Kansas', 'New Mexico',
-      //           'Nebraska', 'Idaho', 'West Virginia', 'Hawaii', 'New Hampshire', 'Maine', 'Rhode Island',
-      //           'Montana', 'Delaware', 'South Dakota', 'North Dakota', 'Alaska', 'District of Columbia', 'Vermont',
-      //           'Wyoming']
-    
-    
-      //         for (i = 0; i < 51; i++) {
-      //           prices.push(states[places[i]][dat]);
-      //           prices.sort(function (a, b) { return a - b });
-      //         }
-    
-    
-      //         B = d3.quantile(prices, 0.25);
-      //         C = d3.quantile(prices, 0.5);
-      //         D = d3.quantile(prices, 0.75);
-    
-    
-      //         if (states[arg][dat] > D) return "green";
-      //         else if (states[arg][dat] > C) return "yellow";
-      //         else if (states[arg][dat] > B) return "orange";
-      //         else return "red";
-      //       }
-      //     })
-      //   })
-      // };
-      // const values2 = ['Jan2000', 'Feb2000', 'Mar2000', 'apr2000', 'May2000', 'Jun2000',
-      //   'Jul2000', 'Aug2000', 'Sep2000', 'Oct2000', 'Nov2000', 'Dec2000', 'Jan2001',
-      //   'Feb2001', 'Mar2001', 'apr2001', 'May2001', 'Jun2001', 'Jul2001', 'Aug2001', 'Sep2001',
-      //   'Oct2001', 'Nov2001', 'Dec2001', 'Jan2002', 'Feb2002', 'Mar2002', 'apr2002', 'May2002',
-      //   'Jun2002', 'Jul2002', 'Aug2002', 'Sep2002', 'Oct2002', 'Nov2002', 'Dec2002', 'Jan2003',
-      //   'Feb2003', 'Mar2003', 'apr2003', 'May2003', 'Jun2003', 'Jul2003', 'Aug2003', 'Sep2003', 'Oct2003',
-      //   'Nov2003', 'Dec2003', 'Jan2004', 'Feb2004', 'Mar2004', 'apr2004', 'May2004', 'Jun2004',
-      //   'Jul2004', 'Aug2004', 'Sep2004', 'Oct2004', 'Nov2004', 'Dec2004', 'Jan2005', 'Feb2005',
-      //   'Mar2005', 'apr2005', 'May2005', 'Jun2005', 'Jul2005', 'Aug2005', 'Sep2005', 'Oct2005',
-      //   'Nov2005', 'Dec2005', 'Jan2006', 'Feb2006', 'Mar2006', 'apr2006', 'May2006', 'Jun2006',
-      //   'Jul2006', 'Aug2006', 'Sep2006', 'Oct2006', 'Nov2006', 'Dec2006', 'Jan2007', 'Feb2007',
-      //   'Mar2007', 'apr2007', 'May2007', 'Jun2007', 'Jul2007', 'Aug2007', 'Sep2007', 'Oct2007',
-      //   'Nov2007', 'Dec2007', 'Jan2008', 'Feb2008', 'Mar2008', 'apr2008', 'May2008', 'Jun2008',
-      //   'Jul2008', 'Aug2008', 'Sep2008', 'Oct2008', 'Nov2008', 'Dec2008', 'Jan2009', 'Feb2009',
-      //   'Mar2009', 'apr2009', 'May2009', 'Jun2009', 'Jul2009', 'Aug2009', 'Sep2009', 'Oct2009',
-      //   'Nov2009', 'Dec2009', 'Jan2010', 'Feb2010', 'Mar2010', 'apr2010', 'May2010', 'Jun2010',
-      //   'Jul2010', 'Aug2010', 'Sep2010', 'Oct2010', 'Nov2010', 'Dec2010', 'Jan2011', 'Feb2011',
-      //   'Mar2011', 'apr2011', 'May2011', 'Jun2011', 'Jul2011', 'Aug2011', 'Sep2011', 'Oct2011',
-      //   'Nov2011', 'Dec2011', 'Jan2012', 'Feb2012', 'Mar2012', 'apr2012', 'May2012', 'Jun2012',
-      //   'Jul2012', 'Aug2012', 'Sep2012', 'Oct2012', 'Nov2012', 'Dec2012', 'Jan2013', 'Feb2013',
-      //   'Mar2013', 'apr2013', 'May2013', 'Jun2013', 'Jul2013', 'Aug2013', 'Sep2013', 'Oct2013',
-      //   'Nov2013', 'Dec2013', 'Jan2014', 'Feb2014', 'Mar2014', 'apr2014', 'May2014', 'Jun2014',
-      //   'Jul2014', 'Aug2014', 'Sep2014', 'Oct2014', 'Nov2014', 'Dec2014', 'Jan2015', 'Feb2015',
-      //   'Mar2015', 'apr2015', 'May2015', 'Jun2015', 'Jul2015', 'Aug2015', 'Sep2015', 'Oct2015',
-      //   'Nov2015', 'Dec2015', 'Jan2016', 'Feb2016', 'Mar2016', 'apr2016', 'May2016', 'Jun2016',
-      //   'Jul2016', 'Aug2016', 'Sep2016', 'Oct2016', 'Nov2016', 'Dec2016', 'Jan2017', 'Feb2017',
-      //   'Mar2017', 'apr2017', 'May2017', 'Jun2017', 'Jul2017', 'Aug2017', 'Sep2017', 'Oct2017',
-      //   'Nov2017', 'Dec2017', 'Jan2018', 'Feb2018', 'Mar2018', 'apr2018', 'May2018', 'Jun2018',
-      //   'Jul2018', 'Aug2018', 'Sep2018', 'Oct2018', 'Nov2018', 'Dec2018', 'Jan2019', 'Feb2019',
-      //   'Mar2019', 'apr2019', 'May2019', 'Jun2019', 'Jul2019', 'Aug2019', 'Sep2019', 'Oct2019',
-      //   'Nov2019', 'Dec2019', 'Jan2020', 'Feb2020', 'Mar2020', 'apr2020', 'May2020', 'Jun2020',
-      //   'Jul2020', 'Aug2020', 'Sep2020', 'Oct2020', 'Nov2020', 'Dec2020', 'Jan2021', 'Feb2021',
-      //   'Mar2021', 'apr2021', 'May2021', 'Jun2021', 'Jul2021', 'Aug2021', 'Sep2021', 'Oct2021',
-      //   'Nov2021', 'Dec2021', 'Jan2022', 'Feb2022', 'Mar2022', 'apr2022', 'May2022', 'Jun2022',
-      //   'Jul2022', 'Aug2022', 'Sep2022', 'Oct2022', 'Nov2022', 'Dec2022', 'Jan2023', 'Feb2023',
-      //   'Mar2023', 'apr2023', 'May2023', 'Jun2023', 'Jul2023', 'Aug2023', 'Sep2023'];
-      
+          const myIcon = L.divIcon({
+            className: "my-custom-pin",
+           iconAnchor: [0, 24],
+            html: `<span style="${markerHtmlStyles}" />`
+          })
+   
+                 let bikeMarker = L.marker([station.RegionLat, station.RegionLng],{icon: myIcon}).bindPopup("<h3>County: " +station.CountyName +  "<br></h3><h3>Region: " + station.RegionName + "</h3><h3> House Values: <br> 2022-01-31: " +  Jan2022 + "</h3><h3> 2022-02-28: " + Feb2022 + "<br></h3><h3> 2022-03-31: " + Mar2022 + "<br></h3><h3> 2022-04-30: " + Apr2022 + "<br></h3><h3>2022-05-31: " + May2022 + "<br></h3><h3>2922-06-30: " + June2022 + "<br></h3><h3>2022-07-31: " + July2022  + "<br></h3><h3>2022-08-31: " + Aug2022 + "<br></h3><h3>2022-09-30: " + Sep2022 + "<br></h3><h3>2022-10-31: " + Oct2022 + "<br></h3><h3>2022-11-30: " + Nov2022 + "<br></h3><h3>2022-12-31: " + Dec2022 + "<br></h3><h3>2023-01-31: " + Jan2023 + "<br></h3><h3>2023-02-28: " + Feb2023 + "<br></h3><h3>2023-03-31: " + Mar2023 + "<br></h3><h3>2023-04-30: " + Apr2023 + "<br></h3><h3>2023-05-31: " + May2023 + "<br></h3><h3>2923-06-30: " + June2023 + "<br></h3><h3>2023-07-31: " + July2023  + "<br></h3><h3>2023-08-31: " + Aug2023 + "<br></h3><h3>2023-09-30: " + Sep2023 + "</h3>")
+  
+            return bikeMarker;
+          }
+  
+            d3.json("data/trueData.json").then(createMarkers)
+  
